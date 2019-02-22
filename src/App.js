@@ -5,11 +5,11 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    const tre = true;
     this.state = {
        data: [],
-      tre: 'r',
-       flag: true};
+      tre: [],
+      flag: true
+      };
    
 }
    
@@ -19,17 +19,18 @@ class App extends Component {
     .then(res => res.json())
     .then(data => this.setState({
       data: data,
-      tre: 'r'}));
+      tre: [],
+    flag: true}));
    }
 
    fetchDetails = (e) => {
-     this.setState({tre: e.target , flag: false});
      
-
-    
-    // console.log('We need to get the details for ', data);
+     this.setState({tre: e.currentTarget.attributes['data-value'].value, flag: false});
+      
+     console.log('We need to get the details for ', this.state.tre);
   
 }
+
   
   render() {
     const flag = this.state.flag;
@@ -37,45 +38,58 @@ class App extends Component {
         
      <div>
        <button onClick = {this.delta.bind(this)}>+</button>
+       
         <table>
       <tbody>{this.state.data.map((item, i) => {
               
               return (                         
-                     <tr key = {i} >    
-                      <td onClick={(e) => this.fetchDetails(e)}>{item.id}</td>
+                <tr key={i} data-value={[
+                  item.address.streetAddress,
+                  item.address.city,
+                  item.address.state,
+                  item.address.zip,
+                  item.description]} onClick={(e) => this.fetchDetails(e)}> 
+                      <td>{item.id}</td>
                       <td>{item.firstName}</td>
                       <td>{item.lastName}</td>
                       <td>{item.email}</td>
-                      <td>{item.phone}</td>
+                      <td>{item.phone}</td> 
+                      
+                      
                   </tr>)
                   
             })}</tbody>
        </table>
-
-      </div>: <div>Здесь будут данные строки</div> )
+</div>:
+<div>
+       <button onClick = {this.delta.bind(this)}>+</button>
+        <table>
+      <tbody>{this.state.data.map((item, i) => {
+              
+              return (                         
+                     <tr key={i} data-value={[
+                       item.address.streetAddress,
+                       item.address.city,
+                       item.address.state,
+                       item.address.zip,
+                       item.description]} onClick={(e) => this.fetchDetails(e)}>    
+                      <td>{item.id}</td>
+                      <td>{item.firstName}</td>
+                      <td>{item.lastName}</td>
+                      <td>{item.email}</td>
+                      <td>{item.phone}</td> 
+                      
+                  </tr>)
+                  
+            })}</tbody>
+       </table>
+       <div>______________________________________________________</div>
       
+         <div id='mydiv'>{this.state.tre} </div>
+                            
+      
+</div>
+        ) }
     } 
-      
-  }
-    //  const elements = document.getElementsByClassName("root");
-
-    //   for (var i = 0; i < elements.length; i++) {
-    //     const feed = elements[i].getAttribute("feed");
-    //     this.render(<App key={i} feed={feed} />, elements[i]);
-
-
-
-
-
-
-
-// }
-// render() {
-    
-        
-//   return (
-
-// );
-// }
-
+  
 export default App;
