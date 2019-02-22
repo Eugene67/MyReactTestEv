@@ -40,7 +40,7 @@ class App extends Component {
         <table>
       <tbody>{this.state.data.map((item, i) => {
               
-              return (                         /*Здесь не работает обработчик onClick={() => this.fetchDetails}*/
+              return (                         
                      <tr key = {i} >    
                       <td onClick={(e) => this.fetchDetails(e)}>{item.id}</td>
                       <td>{item.firstName}</td>
