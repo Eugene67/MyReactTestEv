@@ -7,13 +7,15 @@
   color: #61dafb;
 }
 #mydiv {
-    width: 200px; height: auto; /* Размеры */
+    width: 100%; height: auto; /* Размеры */
+    min-height: 25px; 
     background: #fc0; /* Цвет фона */
     border: 3px solid rgb(2, 2, 2); 
     border-radius: 10px; /* Радиус скругления */
     display: inline-block;
     margin: 8px;
     padding: 3px; 
+    word-wrap: break-word;
    }
 
 
